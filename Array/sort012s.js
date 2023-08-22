@@ -26,7 +26,26 @@ console.log(sort012([2,2,1,0,1,0,1,2] , 8));
 
 
 
+function sortDescending(arr, N) {
+    let low = N - 1;     // Pointer for larger values
+    let high = 0;        // Pointer for smaller values
+    let mid = 0;         // Pointer for equal values
 
+    while (mid <= low) {
+        if (arr[mid] === 0) {
+            // Swap arr[low] and arr[mid]
+            [arr[low], arr[mid]] = [arr[mid], arr[low]];
+            low--;
+            mid++;
+        } else if (arr[mid] === 1) {
+            mid++;
+        } else {
+            // Swap arr[mid] and arr[high]
+            [arr[mid], arr[high]] = [arr[high], arr[mid]];
+            high++;
+        }
+    }
+}
 
 
 // Dutch National Flag algorithm ===

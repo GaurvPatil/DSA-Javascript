@@ -1,0 +1,88 @@
+class Node {
+    constructor(value) {
+      this.value = value;
+      this.right = null;
+      this.left = null;
+    }
+  }
+  
+  class BST {
+    constructor() {
+      this.root = null;
+    }
+  
+    insert(value) {
+      const newNode = new Node(value);
+      if (this.root === null) {
+        this.root = newNode;
+        return this;
+      }
+  
+      let temp = this.root;
+  
+      while (true) {
+        if (newNode.value === temp.value) return false;
+        if (newNode.value < temp.value) {
+          if (temp.left === null) {
+            temp.left = newNode;
+            return this;
+          }
+          temp = temp.left;
+        } else {
+          if (temp.right === null) {
+            temp.right = newNode;
+            return this;
+          }
+          temp = temp.right;
+        }
+      }
+    }
+  
+    DFSpreorder() {
+      let results = [];
+      function traverse(currentNode) {
+        results.push(currentNode.value);
+        if (currentNode.left) traverse(currentNode.left);
+        if (currentNode.right) traverse(currentNode.right);
+      }
+      traverse(this.root);
+      return results;
+    }
+  
+    DFSpostorder() {
+      let results = [];
+      function traverse(currentNode) {
+        if (currentNode.left) traverse(currentNode.left);
+        if (currentNode.right) traverse(currentNode.right);
+        results.push(currentNode.value);
+      }
+      traverse(this.root);
+      return results;
+    }
+  
+    DFSinorder() {
+      let results = [];
+      function traverse(currentNode) {
+        if (currentNode.left) traverse(currentNode.left);
+        results.push(currentNode.value);
+        if (currentNode.right) traverse(currentNode.right);
+      }
+      traverse(this.root);
+      return results;
+    }
+  }
+  
+  const myBST = new BST();
+  myBST.insert(47);
+  myBST.insert(21);
+  myBST.insert(76);
+  myBST.insert(18);
+  myBST.insert(27);
+  myBST.insert(52);
+  myBST.insert(82);
+  console.log(myBST);
+  
+  console.log(myBST.DFSpreorder());
+  console.log(myBST.DFSpostorder());
+  console.log(myBST.DFSinorder());
+  

@@ -1,14 +1,62 @@
-function bubbleSort(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
-    for (j = 0; j < i; j++) {
-      if (arr[j] > arr[j + 1]) {
-        let temp = arr[j];
-        arr[j] = arr[j + 1];
-        arr[j + 1] = temp;
-      }
-    }
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
   }
-  return arr
 }
 
-bubbleSort([4, 2, 6, 5, 1, 3]);
+class LinkedList {
+  constructor(value) {
+    const newNode = new Node(value);
+    this.head = newNode;
+    this.tail = newNode;
+    this.length = 1;
+  }
+
+  push(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+
+
+
+
+  deleteNode(x){
+    if(x===1){
+        return this.head.next
+    }
+    
+    let current = this.head;
+    let prev = null;
+    let count = 1;
+    
+    while(current !==null && count < x){
+        prev = current;
+        current = current.next;
+        count++
+    }
+    
+    if(current === null){
+        return this.head
+    }
+    prev.next = current.next
+    return this.head;
+ }
+
+  
+}
+
+let myLinkedList = new LinkedList(17);
+myLinkedList.push(77);
+myLinkedList.push(88);
+myLinkedList.push(99);
+
+console.log(myLinkedList.deleteNode(2));

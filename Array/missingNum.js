@@ -6,4 +6,4 @@ function missingNumber(array, n) {
   }
   
   console.log(missingNumber([1, 5, 3, 2,4,6,7], 8));
-  
+  // Missing number in array
